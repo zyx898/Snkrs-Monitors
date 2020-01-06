@@ -13,6 +13,7 @@ headers= {'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/5
 
 webhookUrl = '' #Webhook To Post Pings 
 logWebhookurl = '' #Webhook To store Monitor Logs
+delay = '' #Number 1-10
 
 
 def post_discord(imageUrl,title,status,styleColor,publishType,exclusiveAccess,hardLaunch,price,availability,method,Name,sizes):
@@ -134,7 +135,7 @@ def main(API,Name):
                             old_slugs = new_slugs
             else:
                 print(str(datetime.now())+ f' ------------------- Monitoring [ {Name} ]')
-                time.sleep(10)
+                time.sleep(int(delay))
         except Exception as e:
             post_log(str(e),Name)
             print(str(datetime.now()) + f' ----------------------Error Requesting to {Name}')
