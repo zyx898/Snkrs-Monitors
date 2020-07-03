@@ -11,7 +11,7 @@ from proxymanager import ProxyManager
 from discord_webhook import DiscordEmbed, DiscordWebhook
 
 headers= {'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36'}
-proxy_manager = ProxyManager('proxies.txt')
+proxy_manager = ProxyManager('proxies.txt') #Proxy manager
 
 webhookUrl = '' #Webhook To Post Pings 
 logWebhookurl = '' #Webhook To store Monitor Logs
