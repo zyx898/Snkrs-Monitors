@@ -7,9 +7,11 @@ import random
 from datetime import datetime
 import requests
 import threading
+from proxymanager import ProxyManager
 from discord_webhook import DiscordEmbed, DiscordWebhook
 
 headers= {'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36'}
+proxy_manager = ProxyManager('proxies.txt')
 
 webhookUrl = '' #Webhook To Post Pings 
 logWebhookurl = '' #Webhook To store Monitor Logs
@@ -40,7 +42,7 @@ def post_log(message,Name):
     webhook.execute()
 
 def scrpaeSlugs(url):
-    apiReq = requests.get(url,headers=headers)
+    apiReq = requests.get(url,headers=headers,proxies=proxy_manager.random_proxy().get_dict())
     apiInfo = json.loads(apiReq.text)
     apiObjects =  apiInfo['objects']
     objectSlugs = []
@@ -49,7 +51,7 @@ def scrpaeSlugs(url):
     return objectSlugs
 
 def hitApi(url):
-    apiReq = requests.get(url,headers=headers)
+    apiReq = requests.get(url,headers=headers,proxies=proxy_manager.random_proxy().get_dict())
     apiInfo = json.loads(apiReq.text)
     apiObjects =  apiInfo['objects']
     return apiObjects
